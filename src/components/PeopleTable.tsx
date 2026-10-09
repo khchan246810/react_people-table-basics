@@ -11,7 +11,10 @@ export const PeopleTable = ({ people, selectedSlug }: Props) => {
     name ? people.find(person => person.name === name) || null : null;
 
   return (
-    <table className="table is-striped is-hoverable is-fullwidth">
+    <table
+      className="table is-striped is-hoverable is-fullwidth"
+      data-cy="peopleTable"
+    >
       {' '}
       <thead>
         {' '}
@@ -31,7 +34,7 @@ export const PeopleTable = ({ people, selectedSlug }: Props) => {
           const rowClass = isSelected ? 'has-background-warning' : undefined;
 
           return (
-            <tr key={person.slug} className={rowClass}>
+            <tr key={person.slug} className={rowClass} data-cy="person">
               <td>
                 <PersonLink person={person} />
               </td>
