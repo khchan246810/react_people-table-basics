@@ -1,4 +1,5 @@
 import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
+
 import 'bulma/css/bulma.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.scss';
@@ -12,22 +13,26 @@ const Navbar = () => {
   return (
     <nav
       className="navbar is-light is-fixed-top is-mobile has-shadow"
-      data-cy="Nav"
+      data-cy="nav"
     >
-      {' '}
       <div className="container">
-        {' '}
         <div className="navbar-brand">
           <Link
             to="/"
-            className={`navbar-item ${pathname === '/' ? 'has-background-grey-lighter' : ''}`}
+            className={`navbar-item ${
+              pathname === '/' ? 'has-background-grey-lighter' : ''
+            }`}
           >
-            Home{' '}
+            Home
           </Link>
 
           <Link
             to="/people"
-            className={`navbar-item ${pathname.startsWith('/people') ? 'has-background-grey-lighter' : ''}`}
+            className={`navbar-item ${
+              pathname.startsWith('/people')
+                ? 'has-background-grey-lighter'
+                : ''
+            }`}
           >
             People
           </Link>
@@ -40,9 +45,9 @@ const Navbar = () => {
 const NotFoundPage = () => <h1 className="title">Page not found</h1>;
 
 export const App = () => (
-  <>
-    {' '}
+  <div data-cy="app">
     <Navbar />
+
     <main className="section">
       <div className="container">
         <Routes>
@@ -54,5 +59,5 @@ export const App = () => (
         </Routes>
       </div>
     </main>
-  </>
+  </div>
 );

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Loader } from '../components/Loader';
 import { PeopleTable } from '../components/PeopleTable';
 import { Person } from '../types/Person';
 
@@ -39,15 +40,21 @@ export const PeoplePage = () => {
 
   return (
     <>
-      {' '}
       <h1 className="title">People Page</h1>
-      {loading && <p>Loading...</p>}
+
+      {loading && <Loader />}
+
       {error && (
-        <p className="has-text-danger">
+        <p className="has-text-danger" data-cy="peopleLoadingError">
           Something went wrong. Please try again.
         </p>
       )}
-      {!loading && !error && (
+
+      {!loading && !error && people.length === 0 && (
+        <p data-cy="noPeopleMessage">There are no people yet</p>
+      )}
+
+      {!loading && !error && people.length > 0 && (
         <PeopleTable people={people} selectedSlug={slug} />
       )}
     </>
